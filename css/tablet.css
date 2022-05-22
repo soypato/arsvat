@@ -1,0 +1,12 @@
+@media (min-width: 768px) {
+
+    .navbar{
+       padding: 1.4rem 3rem; 
+    }
+    section {
+        grid-template-columns: .3fr 2fr .3fr;
+    }
+    .shortLinks{
+        grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    }
+}

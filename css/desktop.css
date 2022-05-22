@@ -1,0 +1,6 @@
+@media (min-width: 1024px) {
+    section {
+         grid-template-columns: .8fr 2fr .8fr;
+    }
+
+}
