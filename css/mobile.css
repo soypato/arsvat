@@ -12,7 +12,7 @@ html {
     --first-color: #fff;
     --accent-color: #000000;
     --third-color: #ddd9d9;
-    --hover-color: #f3ebeb;
+    --hover-color: #585bf3;
     --sp-color: #3742bc;
 }
 
@@ -107,6 +107,7 @@ html {
     }
     .shortLinks{
         display: grid;
+        margin: 3rem 0;
     }
     .linkDescription{
         box-shadow: rgba(196, 176, 176, 0.2) 0px 2px 8px 0px;
@@ -124,12 +125,71 @@ html {
         display: grid;
         place-items: center;
         margin: 3rem 0;
-    }
-    .seeAllButton a{
         background-color: var(--sp-color);
         color: var(--first-color);
         border-radius: 1.3rem;
         padding: 1rem;
         font-size: 1.2rem;
     }
+    .seeAllButton:hover{
+        background-color: var(--hover-color);
+    }
+    #printButton{
+        border: none;
+        width: 100%;
+    }
+    .inputsDiv{
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        align-items: center;
+        font-size: 1.3rem;
+    }
+    #inputPrice{
+        text-align: right;
+    }
+    .inputStyle{
+        border-radius: 1.2rem;
+        border-style: none;
+        font-size: 2rem;
+        appearance: none;
+        width: 100%;
+        margin: 1rem 0;
+    }
+
+    .inputStyle:focus{
+        outline: none;
+    }
+
+    .results{
+        margin-top: 2rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+    }
+    .results span{
+        font-size: 1.5rem;
+        display: block;
+        margin: auto 0;
+        }
+    .results p{
+        text-align: right;
+        font-size: 1.5rem;
+    }
+    
+    .notes p{
+        text-align: center;
+        margin: .4rem 0;
+    }
+    #total, .total-bold{
+        font-weight: 800;
+        font-size: 2.5rem;
+    }
+
+
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button { 
+      -webkit-appearance: none; 
+      margin: 0; 
+    }
+    
 }

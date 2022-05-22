@@ -13,16 +13,16 @@
       <link rel="stylesheet" href="css/mobile.css">
       <link rel="stylesheet" href="css/tablet.css">
       <link rel="stylesheet" href="css/desktop.css">
-      <meta name="description" content="Desarrollador web, streamer, músico y editor. 19 años. Mar del Plata, Argentina.">
-      <meta name="keywords" content="desarrollo web, programación, portfolio, aprendizaje, Argentina, front-end, HTML, CSS, JavaScript, soypato, pato tb, soypatotb, editor, video, marketing, criptomonedas, redes, youtube, twitch">
-      <title>Calculadora de compras en dólares - soypato</title>
+      <meta name="description" content="Calculá gratis la compra en productos en dólares a precio en pesos argentinos con impuestos incluídos.">
+      <meta name="keywords" content="desarrollo web, programación, portfolio, aprendizaje, Argentina, front-end, HTML, CSS, JavaScript, soypato, pato tb, soypatotb, criptomonedas, redes, arsvat, dolar, dolares, calculadora, convertir, iva, impuestos, cotizacion, cotizar">
+      <title>Calculadora de compras en dólares</title>
    </head>
    <body>
       <header>
          <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
                <a class="navbar-brand" href="https://soypato.github.io/">
-               <img class="img-header" src="https://i.ibb.co/41bPMQ1/text2952.png"></img>
+               <img class="img-header" src="https://i.ibb.co/zx1dCtC/text2952.webp" alt="soypato logo"></img>
                </a>
                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                <span class="navbar-toggler-icon"></span>
@@ -42,16 +42,45 @@
          <section>
             <article>
                <figure class="banner">
-                  <img src="https://i.ibb.co/P9bdKqn/dollar.png" alt="old telephone"></img>
+                  <img src="https://i.ibb.co/Rbp7d3x/dollar.webp" alt="dollar, money"></img>
                </figure>
-               <h1>Calculadora de compras en dólares</h1>
-               <p>📰 Los calculos son aproximados, y permiten saber en cuánto nos quedará una compra en el exterior en base a la contización del dólar en tiempo real.</h2>
-               <p id="dollarNow"></p>   
+               <h1>Arsvat: Calculadora de compras en dólares</h1>
+               <p>📰 Dado a la situación impositiva de Argentina, con esta herramienta podrás saber aproximadamente el valor de una compra en dólares llevada a pesos.</h2>
+               <p id="dollarNow">Cargando...</p>   
+               <div class="shortLinks">
+                  <div class="linkDescription">
+                     <form id="formDollar">
+                        <div class="inputsDiv">
+                           <input class="inputStyle" type="text" placeholder="Nombre"/>
+                           <input class="inputStyle" id="inputPrice" type="number" placeholder="Precio"/>   
+                        </div>
+                        <div class="results">
+                           <span>Valor en dólares</span>
+                           <p id="writingInput">USD 0</p>
+                           <span>Valor en ARS</span>
+                           <p id="dollarValue">ARS 0</p>    
+                           <span>IVA del 30%</span>
+                           <p id="iva30Span">ARS 0</p>
+                           <span>IVA del 35%</span>
+                           <p id="iva35Span">ARS 0</p>  
+                           <span>Total IVA</span>
+                           <p id="totalIva">ARS 0</p> 
+                           <span class="total-bold">Valor aproximado</span>
+                           <p class="total-bold" id="total">ARS 0</p>         
+                        </div>
+                     </form>
+                  </div>
+               </div>
+               <div class="notes">
+                  <button id="printButton" class="seeAllButton">Imprimir / PDF</button>
+                  <p>*Este cálculo no tiene valor legal.</p>
+                  <p>Fuente del valor del dólar: <a target="_blank" href="https://www.dolarsi.com/">DólarSI</p>
+               </div>
             </article>
          </section>
       </main>
       <footer>
-         <p class="footerText"><span id="currentYear"></span><a href="https://soypato.github.io/"> • Patricio Tubio (soypato).</a>
+         <p class="footerText"><span id="currentYear"></span><a href="https://soypato.github.io/"> • Patricio Tubio (soypato)</a>
             <p>
       </footer>
       <script src="js/index.js"></script>
