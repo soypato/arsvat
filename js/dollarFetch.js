@@ -2,6 +2,7 @@ const dollarNow = document.querySelector("#dollarNow"),
 formDollar = document.querySelector("#formDollar"),
 inputPrice = document.querySelector("#inputPrice"),
 writingInput = document.querySelector("#writingInput"),
+iva8Span = document.querySelector("#iva8Span"),
 iva30Span = document.querySelector("#iva30Span"),
 iva35Span = document.querySelector("#iva35Span"),
 dollarValue = document.querySelector("#dollarValue"),
@@ -9,7 +10,7 @@ totalIva = document.querySelector("#totalIva"),
 total = document.querySelector("#total"),
 printButton = document.querySelector('#printButton');
 
-let dollarPrice, arsToDollar, iva30Value, iva35Value, totalIvaValue, totalValue;
+let dollarPrice, arsToDollar, iva8Value, iva30Value, iva35Value, totalIvaValue, totalValue;
 
 let variableDollar;
 
@@ -32,16 +33,18 @@ inputPrice.addEventListener("input", async (e) => {
 
 	dollarValue.innerHTML = `= ARS ${arsToDollar}`;
 
+  iva8Value = Number((arsToDollar * 0.08))
 	iva30Value = Number((arsToDollar * 0.3));
 	iva35Value = Number((arsToDollar * 0.35));
 
+  iva8Span.innerHTML = `+ ARS ${iva8Value.toFixed(2)}`;
 	iva30Span.innerHTML = `+ ARS ${iva30Value.toFixed(2)}`;
 	iva35Span.innerHTML = `+ ARS ${iva35Value.toFixed(2)}`;
 	
-	totalIvaValue = (iva30Value + iva35Value).toFixed(2); 
+	totalIvaValue = Number((iva8Value + iva30Value + iva35Value).toFixed(2)); 
   totalIva.innerHTML = `= ARS ${totalIvaValue}`;
 
-	totalValue = (arsToDollar + iva30Value + iva35Value);  
+	totalValue = (arsToDollar + totalIvaValue);  
   total.innerHTML = `ARS ${totalValue.toFixed(2)}`;
 })
 
