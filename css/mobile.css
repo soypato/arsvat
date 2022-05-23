@@ -111,7 +111,7 @@ html {
     }
     .linkDescription, .dollarDiv{
         margin-top: 2rem;
-        box-shadow: rgba(196, 176, 176, 0.2) 0px 2px 8px 0px;
+        box-shadow: rgba(32, 25, 25, 0.2) 0px 2px 8px 0px;
         border-radius: .4rem;
         padding: 2rem;
     }
@@ -153,11 +153,6 @@ html {
         border: none;
         width: 100%;
     }
-    /* .inputsDiv{
-        display: grid;
-        align-items: center;
-        font-size: 1.3rem;
-    } */
     #inputPrice{
         text-align: left;
         border-radius: 1.2rem;
@@ -165,16 +160,20 @@ html {
         font-size: 2.6rem;
         appearance: none;
         width: 100%;
-        margin: 1rem 0;
-    }
-    .inputStyle{
+        margin: -3rem 0;
         color: var(--sp-color);
     }
-
-    .inputStyle:focus{
-        outline: none;
+    #inputPrice:focus{
+        outline-style: none;
     }
 
+    #formDollar input{
+        grid-area: 1 / 2;
+        margin: 0;
+    }
+    .formGrid{
+        grid-area: 2 / 2;
+    }
     .results{
         margin-top: 2rem;
         display: grid;
@@ -183,11 +182,13 @@ html {
     }
     .results span, .results p{
         font-size: 1.8rem;
+        display: block;
+        padding: .3rem 0;
+        margin: auto 0;
     }
     .results span{
-        display: block;
         margin: auto 0;
-        }
+    }
     .results p{
         text-align: right;
     }

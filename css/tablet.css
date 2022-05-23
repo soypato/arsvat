@@ -6,6 +6,14 @@
     section {
         grid-template-columns: .3fr 2fr .3fr;
     }
+    #formDollar{
+        display: grid;
+        grid-template-columns: 1fr 2.5fr 1fr;
+        grid-template-rows: .5fr 2fr;
+    }
+    #total{
+        margin-top: 1rem;
+    }
     .shortLinks{
         grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
     }
