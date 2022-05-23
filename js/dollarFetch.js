@@ -30,32 +30,28 @@ setInterval(() => {
   dollarFetch()
 }, 100000);
 
-inputPrice.addEventListener("input", async (e) => {  
-	writingInput.innerHTML = `USD ${inputPrice.value}` 
-
-	
+inputPrice.addEventListener("input", async (e) => {  	
 	dollarPrice = await dollarFetch();
 	arsToDollar = inputPrice.value * Math.round(parseInt(dollarPrice));
 
-	dollarValue.innerHTML = `= ARS ${arsToDollar}`;
+	dollarValue.innerHTML = `ARS ${arsToDollar}`;
 
   iva8Value = Number((arsToDollar * 0.08))
 	iva30Value = Number((arsToDollar * 0.3));
 	iva35Value = Number((arsToDollar * 0.35));
 
-  iva8Span.innerHTML = `+ ARS ${iva8Value.toFixed(2)}`;
-	iva30Span.innerHTML = `+ ARS ${iva30Value.toFixed(2)}`;
-	iva35Span.innerHTML = `+ ARS ${iva35Value.toFixed(2)}`;
+  iva8Span.innerHTML = `ARS ${iva8Value.toFixed(2)}`;
+	iva30Span.innerHTML = `ARS ${iva30Value.toFixed(2)}`;
+	iva35Span.innerHTML = `ARS ${iva35Value.toFixed(2)}`;
 	
 	totalIvaValue = Number((iva8Value + iva30Value + iva35Value).toFixed(2)); 
-  totalIva.innerHTML = `= ARS ${totalIvaValue}`;
+  totalIva.innerHTML = `ARS ${totalIvaValue}`;
 
 	totalValue = (arsToDollar + totalIvaValue);  
   total.innerHTML = `ARS ${totalValue.toFixed(2)}`;
 
   
   if(inputPrice.value === ''){
-    writingInput.innerHTML = '...'
     dollarValue.innerHTML = '...';
     iva8Span.innerHTML = '...'
     iva30Span.innerHTML = '...'

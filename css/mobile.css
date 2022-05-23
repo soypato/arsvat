@@ -167,6 +167,9 @@ html {
         width: 100%;
         margin: 1rem 0;
     }
+    .inputStyle{
+        color: var(--sp-color);
+    }
 
     .inputStyle:focus{
         outline: none;
@@ -178,14 +181,15 @@ html {
         grid-template-columns: 1fr 1fr;
         align-items: center;
     }
+    .results span, .results p{
+        font-size: 1.8rem;
+    }
     .results span{
-        font-size: 1.5rem;
         display: block;
         margin: auto 0;
         }
     .results p{
         text-align: right;
-        font-size: 1.5rem;
     }
     
     .notes p{
