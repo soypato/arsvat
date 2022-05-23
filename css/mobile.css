@@ -111,7 +111,7 @@ html {
     }
     .linkDescription, .dollarDiv{
         margin-top: 2rem;
-        box-shadow: rgba(32, 25, 25, 0.2) 0px 2px 8px 0px;
+        box-shadow: rgb(196 176 176 / 40%) 0px 2px 8px 0px;
         border-radius: .4rem;
         padding: 2rem;
     }
@@ -157,7 +157,7 @@ html {
         text-align: left;
         border-radius: 1.2rem;
         border-style: none;
-        font-size: 2.6rem;
+        font-size: 2.3rem;
         appearance: none;
         width: 100%;
         margin: -3rem 0;
@@ -197,10 +197,10 @@ html {
         text-align: center;
         margin: .4rem 0;
     }
-    #total, .total-bold{
+    .total-bold{
         color: var(--sp-color);
         font-weight: 800;
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
 
 

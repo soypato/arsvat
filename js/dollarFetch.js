@@ -34,21 +34,21 @@ inputPrice.addEventListener("input", async (e) => {
 	dollarPrice = await dollarFetch();
 	arsToDollar = inputPrice.value * Math.round(parseInt(dollarPrice));
 
-	dollarValue.innerHTML = `ARS ${arsToDollar}`;
+	dollarValue.innerHTML = `ARS ${arsToDollar.toLocaleString('es-AR')}`;
 
   iva8Value = Number((arsToDollar * 0.08))
 	iva30Value = Number((arsToDollar * 0.3));
 	iva35Value = Number((arsToDollar * 0.35));
 
-  iva8Span.innerHTML = `ARS ${iva8Value.toFixed(2)}`;
-	iva30Span.innerHTML = `ARS ${iva30Value.toFixed(2)}`;
-	iva35Span.innerHTML = `ARS ${iva35Value.toFixed(2)}`;
+  iva8Span.innerHTML = `ARS ${iva8Value.toLocaleString('es-AR')}`;
+	iva30Span.innerHTML = `ARS ${iva30Value.toLocaleString('es-AR')}`;
+	iva35Span.innerHTML = `ARS ${iva35Value.toLocaleString('es-AR')}`;
 	
 	totalIvaValue = Number((iva8Value + iva30Value + iva35Value).toFixed(2)); 
-  totalIva.innerHTML = `ARS ${totalIvaValue}`;
+  totalIva.innerHTML = `ARS ${totalIvaValue.toLocaleString('es-AR')}`;
 
 	totalValue = (arsToDollar + totalIvaValue);  
-  total.innerHTML = `ARS ${totalValue.toFixed(2)}`;
+  total.innerHTML = `ARS ${totalValue.toLocaleString('es-AR')}`;
 
   
   if(inputPrice.value === ''){
