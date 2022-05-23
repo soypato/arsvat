@@ -30,8 +30,9 @@ setInterval(() => {
   dollarFetch()
 }, 100000);
 
-inputPrice.addEventListener("input", async (e) => {  	
-	dollarPrice = await dollarFetch();
+formDollar.addEventListener("submit", async (e) => {  	
+	e.preventDefault()
+  dollarPrice = await dollarFetch();
 	arsToDollar = inputPrice.value * Math.round(parseInt(dollarPrice));
 
 	dollarValue.innerHTML = `ARS ${arsToDollar.toLocaleString('es-AR')}`;
@@ -49,16 +50,16 @@ inputPrice.addEventListener("input", async (e) => {
 
 	totalValue = (arsToDollar + totalIvaValue);  
   total.innerHTML = `ARS ${totalValue.toLocaleString('es-AR')}`;
+})
 
-  
+inputPrice.addEventListener('input', () => {
   if(inputPrice.value === ''){
-    dollarValue.innerHTML = '...';
-    iva8Span.innerHTML = '...'
-    iva30Span.innerHTML = '...'
-    iva35Span.innerHTML = '...'
-    totalIva.innerHTML = '...';
+    dollarValue.innerHTML = '';
+    iva8Span.innerHTML = ''
+    iva30Span.innerHTML = ''
+    iva35Span.innerHTML = ''
+    totalIva.innerHTML = '';
     total.innerHTML = `ARS 0`;
-
   }
 })
 

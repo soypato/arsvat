@@ -3,14 +3,14 @@
     .navbar{
        padding: 1.4rem 3rem; 
     }
-    section {
-        grid-template-columns: .3fr 2fr .3fr;
+    .linkDescription{
+        display: grid;
+        grid-template-columns: 1fr 3fr 1fr;
     }
     #formDollar{
-        display: grid;
-        grid-template-columns: 1fr 2.5fr 1fr;
-        grid-template-rows: .5fr 2fr;
+        grid-area: 1 / 2;
     }
+
     .shortLinks{
         grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
     }

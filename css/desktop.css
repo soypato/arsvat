@@ -2,5 +2,10 @@
     section {
          grid-template-columns: .8fr 2fr .8fr;
     }
-
+    .linkDescription{
+        grid-template-columns: 1fr 3fr 1fr;
+    }
+    .results span, .results p{
+        font-size: 1.8rem;
+    }
 }
