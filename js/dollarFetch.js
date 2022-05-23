@@ -18,7 +18,8 @@ let variableDollar;
 async function dollarFetch() {
     const response = await fetch('https://www.dolarsi.com/api/api.php?type=valoresprincipales');
     const data = await response.json();
-    let dollarBlueData = data[3].casa.venta;
+    let dollarData =  data[0].casa.venta;
+    let dollarBlueData = data[1].casa.venta;
     dollarNow.innerHTML = `${dollarData}`
     dollarBlueNow.innerHTML = `${dollarBlueData}`
     return dollarData;
