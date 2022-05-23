@@ -1,5 +1,5 @@
 # Arsvat
-Con esta herramienta podrás saber aproximadamente el valor de una compra en dólares llevada a pesos.
+Con esta herramienta podrás saber aproximadamente el valor de una compra en dólares llevada a pesos con sus impuestos.
 
 La situación económica de Argentina al comprar en moneda extranjera contiene cargas impositivas como el "impuesto PAIS", entre otras.
 
