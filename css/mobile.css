@@ -109,10 +109,25 @@ html {
         display: grid;
         margin: 3rem 0;
     }
-    .linkDescription{
+    .linkDescription, .dollarDiv{
+        margin-top: 2rem;
         box-shadow: rgba(196, 176, 176, 0.2) 0px 2px 8px 0px;
         border-radius: .4rem;
         padding: 2rem;
+    }
+    .dollarCotizations{
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        place-items: center;
+    }
+    .dollarDiv{
+        width: 100%;
+        text-align: center;
+    }
+    #dollarNow, #dollarBlueNow{
+        color: var(--sp-color);
+        font-weight: 800;
+        font-size: 3rem;
     }
     .banner{
         margin: 2rem 0 0 0;
@@ -178,6 +193,7 @@ html {
         margin: .4rem 0;
     }
     #total, .total-bold{
+        color: var(--sp-color);
         font-weight: 800;
         font-size: 2.5rem;
     }

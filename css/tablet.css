@@ -9,4 +9,10 @@
     .shortLinks{
         grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
     }
+    .dollarCotizations{
+        display: grid;
+        grid-template-rows: none;
+        grid-template-columns: 1fr 1fr;
+        place-items: center;
+    }
 }

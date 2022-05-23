@@ -1,4 +1,5 @@
 const dollarNow = document.querySelector("#dollarNow"),
+dollarBlueNow = document.querySelector("#dollarBlueNow"),
 formDollar = document.querySelector("#formDollar"),
 inputPrice = document.querySelector("#inputPrice"),
 writingInput = document.querySelector("#writingInput"),
@@ -19,14 +20,19 @@ async function dollarFetch() {
     const data = await response.json();
     let dollarData =  data[0].casa.venta;
     let dollarBlueData = data[3].casa.venta;
-    dollarNow.innerHTML = `🟢 Cotizaciones: ARS ${dollarData} (BCRA/Venta) - ARS ${dollarBlueData} (Blue/Venta)`
+    dollarNow.innerHTML = `${dollarData}`
+    dollarBlueNow.innerHTML = `${dollarBlueData}`
     return dollarData;
   }
-
 dollarFetch()
 
-inputPrice.addEventListener("input", async (e) => {
+setInterval(() => {
+  dollarFetch()
+}, 100000);
+
+inputPrice.addEventListener("input", async (e) => {  
 	writingInput.innerHTML = `USD ${inputPrice.value}` 
+
 	
 	dollarPrice = await dollarFetch();
 	arsToDollar = inputPrice.value * Math.round(parseInt(dollarPrice));
@@ -46,13 +52,20 @@ inputPrice.addEventListener("input", async (e) => {
 
 	totalValue = (arsToDollar + totalIvaValue);  
   total.innerHTML = `ARS ${totalValue.toFixed(2)}`;
+
+  
+  if(inputPrice.value === ''){
+    writingInput.innerHTML = '...'
+    dollarValue.innerHTML = '...';
+    iva8Span.innerHTML = '...'
+    iva30Span.innerHTML = '...'
+    iva35Span.innerHTML = '...'
+    totalIva.innerHTML = '...';
+    total.innerHTML = `ARS 0`;
+
+  }
 })
 
 printButton.addEventListener('click', () => {
   print()
 })
-
-
-
-// https://www.dolarsi.com/api/api.php?type=valoresprincipales
-// data[0].casa.venta

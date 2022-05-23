@@ -41,13 +41,19 @@
       <main>
          <section>
             <article>
-               <figure class="banner">
-                  <img src="https://i.ibb.co/Rbp7d3x/dollar.webp" alt="dollar, money"></img>
-               </figure>
+
                <h1>Arsvat: Calculadora de compras en dólares</h1>
-               <p>📰 Dado a la situación impositiva de Argentina, con esta herramienta podrás saber aproximadamente el valor de una compra en dólares llevada a pesos.</h2>
-               <p id="dollarNow">Cargando...</p>   
-               <div class="shortLinks">
+               <p>📰 Con esta herramienta podrás saber aproximadamente el valor de una compra en dólares llevada a pesos.</h2>
+                  <div class="dollarCotizations">
+                  <div class="dollarDiv">
+                       <p>Dólar (BRCA/Venta)</p>
+                       <p id="dollarNow">...</p>
+                    </div>
+                    <div class="dollarDiv">
+                     <p>Dólar (Blue/Venta)</p>
+                     <p id="dollarBlueNow">...</p>
+                 </div>
+               </div>  
                   <div class="linkDescription">
                      <form id="formDollar">
                         <!-- <div class="inputsDiv"> -->
@@ -56,17 +62,17 @@
                         <!-- </div> -->
                         <div class="results">
                            <span>Valor en dólares</span>
-                           <p id="writingInput">USD 0</p>
+                           <p id="writingInput">...</p>
                            <span>Valor en ARS</span>
-                           <p id="dollarValue">ARS 0</p>
+                           <p id="dollarValue">...</p>
                            <span>IVA del 8%</span>
-                           <p id="iva8Span">ARS 0</p>    
+                           <p id="iva8Span">...</p>    
                            <span>IVA del 30%</span>
-                           <p id="iva30Span">ARS 0</p>
+                           <p id="iva30Span">...</p>
                            <span>IVA del 35%</span>
-                           <p id="iva35Span">ARS 0</p>  
+                           <p id="iva35Span">...</p>  
                            <span>Total IVA</span>
-                           <p id="totalIva">ARS 0</p> 
+                           <p id="totalIva">...</p> 
                            <span class="total-bold">Valor aproximado</span>
                            <p class="total-bold" id="total">ARS 0</p>         
                         </div>
@@ -76,14 +82,14 @@
                <div class="notes">
                   <button id="printButton" class="seeAllButton">Imprimir / PDF</button>
                   <p>*Este cálculo no tiene valor legal.</p>
-                  <p>Fuente del valor del dólar: <a target="_blank" href="https://www.dolarsi.com/">DólarSI</p>
+                  <p>Fuente del valor del dólar: <a target="_blank" href="https://www.dolarsi.com/">DólarSI</a></p>
                </div>
             </article>
          </section>
       </main>
       <footer>
-         <p class="footerText"><span id="currentYear"></span><a href="https://soypato.github.io/"> • Patricio Tubio (soypato)</a>
-            <p>
+         <p class="footerText"><span id="currentYear">2022</span><a href="https://soypato.github.io/"> • Patricio Tubio (soypato).</a>
+         </p>
       </footer>
       <script src="js/index.js"></script>
       <script src="js/dollarFetch.js"></script>
