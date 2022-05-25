@@ -14,9 +14,8 @@ html {
     --first-color: #fff;
     --accent-color: #000000;
     --third-color: #ddd9d9;
-    --hover-color: #585bf3;
-    --sp-color: #3742bc;
-    --boxColors: rgb(196 176 176 / 40%) 0px 2px 8px 0px;
+    --hover-color: #0e8bb1;
+    --sp-color: #047496;
 }
 
 @media (min-width: 200px) {
@@ -169,6 +168,7 @@ html {
         width: 100%;
     }
     #inputPrice{
+        font-weight: 500;
         text-align: left;
         border-radius: 1.2rem;
         border-style: none;
