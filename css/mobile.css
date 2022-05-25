@@ -14,8 +14,8 @@ html {
     --first-color: #fff;
     --accent-color: #000000;
     --third-color: #ddd9d9;
-    --hover-color: #0e8bb1;
-    --sp-color: #047496;
+    --hover-color: #438a27;
+    --sp-color: #33691e;
 }
 
 @media (min-width: 200px) {
