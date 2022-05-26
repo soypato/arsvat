@@ -1,4 +1,4 @@
-# Arsvat
+# EnExterior
 Con esta herramienta podrás saber aproximadamente el valor de una compra en dólares llevada a pesos con sus impuestos.
 
 La situación económica de Argentina al comprar en moneda extranjera contiene cargas impositivas como el "impuesto PAIS", entre otras.
@@ -7,6 +7,6 @@ La confusión es reiterada debido a los cálculos que hay que realizar antes de 
 
 Además, actualiza y muestra en tiempo real la cotización del dólar oficial y blue. Utilizamos la API de [DólarSI](https://www.dolarsi.com/api/api.php?type=valoresprincipales "DólarSI") para dichos valores.
 
-Podés utilizarla gratuitamente desde https://soypato.github.io/arsvat.
+Podés utilizarla gratuitamente desde https://soypato.github.io/enexterior.
 
 Con 💙 [SoyPato](https://soypato.github.io/ "SoyPato") desde Argentina.

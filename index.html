@@ -14,15 +14,15 @@
       <link rel="stylesheet" href="css/desktop.css">
       <link rel="stylesheet" href="css/extras.css">
       <meta name="description" content="Calculá gratis la compra en productos en dólares a precio en pesos argentinos con impuestos incluídos.">
-      <meta name="keywords" content="desarrollo web, programación, portfolio, aprendizaje, Argentina, front-end, HTML, CSS, JavaScript, soypato, pato tb, soypatotb, criptomonedas, redes, arsvat, dolar, dolares, calculadora, convertir, iva, impuestos, cotizacion, cotizar">
-      <title>Arsvat: Calculadora de compras en dólares </title>
+      <meta name="keywords" content="EnExterior, euro, conversion, convertir, peso, calculadora, JavaScript, soypato, pato tb, soypatotb, criptomonedas, redes, dolar, dolares, calculadora, convertir, iva, impuestos, cotizacion, cotizar, patricio tubio">
+      <title>EnExterior: Calculadora de compras en monedas extranjeras.</title>
    </head>
    <body>
       <header>
          <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
                <a class="navbar-brand" href="https://soypato.github.io/">
-               <img class="img-header" src="https://i.ibb.co/dK2JVx1/default-monochrome.webp" alt="arsvat logo"></img>
+               <img class="img-header" src="./logo/EnExterior.png" alt="EnExterior logo"></img>
                </a>
                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                <span class="navbar-toggler-icon"></span>
@@ -42,8 +42,8 @@
                <!-- <figure class="banner">
                   <img src="https://i.ibb.co/Rbp7d3x/dollar.webp" alt="dollars"></img>
                   </figure> -->
-               <h1>Calculadora de compras en dólares</h1>
-               <p>📰 Con esta herramienta podrás saber aproximadamente el valor de una compra en dólares llevada a pesos con sus impuestos.
+               <h1>Calculadora de compras en el exterior.</h1>
+               <p>📰 Con esta herramienta podrás saber aproximadamente el valor de una compra en monedas extranjeras llevada a pesos con sus impuestos.
                </h2>
                <div class="dollarCotizations">
                   <div class="dollarDiv">
@@ -65,13 +65,18 @@
                </div>
                <div class="linkDescription">
                   <form id="formDollar">
-                     <input class="inputStyle" step="any" id="inputPrice" type="number" placeholder="Precio (USD)"/>   
+                          <select name="currency" id="currency">
+                        <option value="USD" id="USD">USD</option>
+                        <option value="ARS" id="ARS">ARS</option>
+                        <option value="EUR" id="EUR">EUR</option>
+                     </select>
+                     <input class="inputStyle" step="any" id="inputPrice" type="number" placeholder="Precio"/>   
                      <input class="inputSubmit-style" type="submit" value="Calcular"/>
                   </form>
                      <div class="formGrid">
                         <div class="results">
                            <span>Valor en ARS</span>
-                           <p id="dollarValue"></p>
+                           <p id="arsValue"></p>
                            <span>IVA del 8%</span>
                            <p id="iva8Span"></p>
                            <span>IVA del 30%</span>
@@ -96,7 +101,7 @@
          </section>
       </main>
       <footer>
-         <p class="footerText"><span id="currentYear">2022</span> • Arsvat<a href="https://soypato.github.io/"> • Patricio Tubio (soypato).</a>
+         <p class="footerText"><span id="currentYear">2022</span> • EnExterior<a href="https://soypato.github.io/"> • Patricio Tubio (soypato).</a>
          </p>
       </footer>
       <script src="js/index.js"></script>

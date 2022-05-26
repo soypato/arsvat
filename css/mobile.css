@@ -182,9 +182,14 @@ html {
     }
     #formDollar{
         display: grid;
-        grid-template-columns: 3fr 1fr;
+        grid-template-columns: 1fr 3fr 1fr;
         grid-gap: 1rem;
         margin: 0;
+    }
+    #currency, #currency:focus{
+        border: none;
+        outline-style: none;   
+        font-size: 2rem 
     }
     .formGrid{
         grid-area: 2 / 2;
