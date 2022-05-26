@@ -26,12 +26,32 @@ async function dollarFetch() {
     dollarPrice = dollarData
     dollarBluePrice = dollarBlueData;
   }
+dollarFetch()
+
+async function eurFetch(){
+  let response = await fetch('https://api.binance.com/api/v1/ticker/price?symbol=EURUSDT');
+  let data = await response.json();
+  euroData = data.price;
+  euroPrice = euroData;
+}
+eurFetch()
+
 async function btcFetch(){
   let response = await fetch('https://api.binance.com/api/v1/ticker/price?symbol=BTCUSDT');
   let data = await response.json();
   btcData = data.price;
   btcPrice = btcData;
 }
+btcFetch()
+
+async function ethFetch(){
+  let response = await fetch('https://api.binance.com/api/v1/ticker/price?symbol=ETHUSDT');
+  let data = await response.json();
+  ethData = data.price;
+  ethPrice = ethData;
+}
+ethFetch()
+
 // async function euroFetch(){
     // let response = await fetch('https://api-dolar-argentina.herokuapp.com/api/euro/nacion')
     // let data = await response.json();
@@ -40,8 +60,6 @@ async function btcFetch(){
    // return 127.02;
 // }
 
-dollarFetch()
-btcFetch()
 
 setInterval(() => {
   dollarFetch()
@@ -59,8 +77,7 @@ formDollar.addEventListener("submit", async (e) => {
     typeCurrency = 'blue';
   }
   else if(currency.value === 'EUR'){
-      euroPrice = await euroFetch();
-      newPrice = inputPrice.value * parseFloat(euroPrice);      
+      newPrice = inputPrice.value * parseFloat(euroPrice) * parseFloat(dollarPrice);      
       typeCurrency = 'fiat';
   }
   else if(currency.value === 'ARS'){
@@ -70,7 +87,11 @@ formDollar.addEventListener("submit", async (e) => {
   else if(currency.value === 'BTC'){
     newPrice = inputPrice.value * parseFloat(btcPrice) * parseFloat(dollarBluePrice);
     typeCurrency = 'crypto';
-}
+  }
+  else if(currency.value === 'ETH'){
+    newPrice = inputPrice.value * parseFloat(ethPrice) * parseFloat(dollarBluePrice);
+    typeCurrency = 'crypto';
+  }
 
 	arsValue.innerHTML = `ARS ${newPrice.toLocaleString('es-AR')}`;
 
