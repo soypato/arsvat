@@ -23,7 +23,7 @@ async function dollarFetch() {
     let dollarBlueData = data[1].casa.venta;
     dollarNow.innerHTML = `${dollarData}`
     dollarBlueNow.innerHTML = `${dollarBlueData}`
-    return dollarData;
+    dollarPrice = dollarData
   }
 async function euroFetch(){
     // let response = await fetch('https://api-dolar-argentina.herokuapp.com/api/euro/nacion')
@@ -43,7 +43,6 @@ formDollar.addEventListener("submit", async (e) => {
 	e.preventDefault()
 
   if(currency.value === 'USD'){
-      dollarPrice = await dollarFetch();
       newPrice = inputPrice.value * Math.round(parseInt(dollarPrice));
   }
   if(currency.value === 'EUR'){
