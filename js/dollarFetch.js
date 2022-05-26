@@ -81,7 +81,7 @@ formDollar.addEventListener("submit", async (e) => {
       typeCurrency = 'fiat';
   }
   else if(currency.value === 'ARS'){
-      newPrice = inputPrice.value;      
+      newPrice = inputPrice.value * 1;      
       typeCurrency = 'fiat';
   }
   else if(currency.value === 'BTC'){
