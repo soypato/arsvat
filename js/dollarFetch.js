@@ -12,7 +12,7 @@ totalIva = document.querySelector("#totalIva"),
 total = document.querySelector("#total"),
 printButton = document.querySelector('#printButton');
 
-let dollarPrice, dollarBluePrice, euroPrice, btcData, newPrice, typeCurrency, iva8Value, iva30Value, iva35Value, totalIvaValue, totalValue;
+let dollarPrice, dollarBluePrice, euroPrice, btcPrice, ethPrice, bnbPrice, btcData, ethData, bnbData, newPrice, typeCurrency, iva8Value, iva30Value, iva35Value, totalIvaValue, totalValue;
 
 let variableDollar;
 
@@ -52,6 +52,14 @@ async function ethFetch(){
 }
 ethFetch()
 
+async function bnbFetch(){
+  let response = await fetch('https://api.binance.com/api/v1/ticker/price?symbol=BNBUSDT');
+  let data = await response.json();
+  bnbData = data.price;
+  bnbPrice = bnbData;
+}
+bnbFetch()
+
 // async function euroFetch(){
     // let response = await fetch('https://api-dolar-argentina.herokuapp.com/api/euro/nacion')
     // let data = await response.json();
@@ -68,29 +76,34 @@ setInterval(() => {
 formDollar.addEventListener("submit", async (e) => {  	
 	e.preventDefault()
 
-  if(currency.value === 'USD'){
+  switch(currency.value){
+    case 'USD':
       newPrice = inputPrice.value * parseFloat(dollarPrice);
       typeCurrency = 'fiat';
-  }
-  else if(currency.value === 'USD Blue'){
-    newPrice = inputPrice.value * parseFloat(dollarBluePrice);
-    typeCurrency = 'blue';
-  }
-  else if(currency.value === 'EUR'){
+      break;
+    case 'USD Blue':
+      newPrice = inputPrice.value * parseFloat(dollarBluePrice);
+      typeCurrency = 'blue';
+      break;
+    case 'EUR':
       newPrice = inputPrice.value * parseFloat(euroPrice) * parseFloat(dollarPrice);      
       typeCurrency = 'fiat';
-  }
-  else if(currency.value === 'ARS'){
-      newPrice = inputPrice.value;      
+      break; 
+    case 'ARS':
+      newPrice = inputPrice.value * 1;      
       typeCurrency = 'fiat';
-  }
-  else if(currency.value === 'BTC'){
-    newPrice = inputPrice.value * parseFloat(btcPrice) * parseFloat(dollarBluePrice);
-    typeCurrency = 'crypto';
-  }
-  else if(currency.value === 'ETH'){
-    newPrice = inputPrice.value * parseFloat(ethPrice) * parseFloat(dollarBluePrice);
-    typeCurrency = 'crypto';
+      break;
+    case 'BTC':
+      newPrice = inputPrice.value * parseFloat(btcPrice) * parseFloat(dollarBluePrice);
+      typeCurrency = 'crypto';
+      break;
+    case 'ETH':
+      newPrice = inputPrice.value * parseFloat(ethPrice) * parseFloat(dollarBluePrice);
+      typeCurrency = 'crypto';
+      break;
+    case 'BNB':
+      newPrice = inputPrice.value * parseFloat(bnbPrice) * parseFloat(dollarBluePrice);
+      typeCurrency = 'crypto';
   }
 
 	arsValue.innerHTML = `ARS ${newPrice.toLocaleString('es-AR')}`;
