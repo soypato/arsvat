@@ -128,6 +128,7 @@ formDollar.addEventListener("submit", async (e) => {
   totalIva.innerHTML = `ARS ${totalIvaValue.toLocaleString('es-AR')}`;
   totalValue = (newPrice + totalIvaValue);
   total.innerHTML = `ARS ${totalValue.toLocaleString('es-AR')}`;
+
 });
 
 inputPrice.addEventListener('input', () => {
