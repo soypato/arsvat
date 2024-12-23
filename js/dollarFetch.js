@@ -7,7 +7,6 @@ const elements = {
   currency: document.querySelector("#currency"),
   arsValue: document.querySelector("#arsValue"),
   iva25Span: document.querySelector("#iva25Span"),
-  iva30Span: document.querySelector("#iva30Span"),
   iva45Span: document.querySelector("#iva45Span"),
   totalIva: document.querySelector("#totalIva"),
   total: document.querySelector("#total"),
@@ -52,12 +51,10 @@ function updateDollarUI() {
 // Calculate price if fiat, and, if crypto, 0
 function calculateAndUpdateUI(price, typeCurrency) {
   const iva25Value = typeCurrency === "fiat" ? price * 0.25 : 0;
-  const iva30Value = typeCurrency === "fiat" ? price * 0.3 : 0;
   const iva45Value = typeCurrency === "fiat" ? price * 0.45 : 0;
-  const totalIvaValue = iva25Value + iva30Value + iva45Value;
+  const totalIvaValue = iva25Value + iva45Value;
 
   elements.iva25Span.textContent = `ARS ${iva25Value.toLocaleString("es-AR")}`;
-  elements.iva30Span.textContent = `ARS ${iva30Value.toLocaleString("es-AR")}`;
   elements.iva45Span.textContent = `ARS ${iva45Value.toLocaleString("es-AR")}`;
   elements.totalIva.textContent = `ARS ${totalIvaValue.toLocaleString("es-AR")}`;
   elements.total.textContent = `ARS ${(price + totalIvaValue).toLocaleString("es-AR")}`;
@@ -109,7 +106,6 @@ function handleInputClear() {
   if (elements.inputPrice.value === "") {
     elements.arsValue.textContent = "";
     elements.iva25Span.textContent = "";
-    elements.iva30Span.textContent = "";
     elements.iva45Span.textContent = "";
     elements.totalIva.textContent = "";
     elements.total.textContent = "ARS 0";
