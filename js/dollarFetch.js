@@ -6,8 +6,8 @@ const elements = {
   inputPrice: document.querySelector("#inputPrice"),
   currency: document.querySelector("#currency"),
   arsValue: document.querySelector("#arsValue"),
-  iva25Span: document.querySelector("#iva25Span"),
-  iva45Span: document.querySelector("#iva45Span"),
+  bienesPersonalesSpan: document.querySelector("#bienesPersonalesSpan"),
+  gananciasSpan: document.querySelector("#gananciasSpan"),
   totalIva: document.querySelector("#totalIva"),
   total: document.querySelector("#total"),
   printButton: document.querySelector("#printButton"),
@@ -50,12 +50,12 @@ function updateDollarUI() {
 
 // Calculate price if fiat, and, if crypto, 0
 function calculateAndUpdateUI(price, typeCurrency) {
-  const iva25Value = typeCurrency === "fiat" ? price * 0.25 : 0;
-  const iva45Value = typeCurrency === "fiat" ? price * 0.45 : 0;
-  const totalIvaValue = iva25Value + iva45Value;
+  const bienesPersonalesValue = typeCurrency === "fiat" ? price * 0.25 : 0;
+  const gananciasValue = typeCurrency === "fiat" ? price * 0.45 : 0;
+  const totalIvaValue = bienesPersonalesValue + gananciasValue;
 
-  elements.iva25Span.textContent = `ARS ${iva25Value.toLocaleString("es-AR")}`;
-  elements.iva45Span.textContent = `ARS ${iva45Value.toLocaleString("es-AR")}`;
+  elements.bienesPersonalesSpan.textContent = `ARS ${bienesPersonalesValue.toLocaleString("es-AR")}`;
+  elements.gananciasSpan.textContent = `ARS ${gananciasValue.toLocaleString("es-AR")}`;
   elements.totalIva.textContent = `ARS ${totalIvaValue.toLocaleString("es-AR")}`;
   elements.total.textContent = `ARS ${(price + totalIvaValue).toLocaleString("es-AR")}`;
 }
@@ -105,8 +105,8 @@ function handleSubmit(event) {
 function handleInputClear() {
   if (elements.inputPrice.value === "") {
     elements.arsValue.textContent = "";
-    elements.iva25Span.textContent = "";
-    elements.iva45Span.textContent = "";
+    elements.bienesPersonalesSpan.textContent = "";
+    elements.gananciasSpan.textContent = "";
     elements.totalIva.textContent = "";
     elements.total.textContent = "ARS 0";
   }
