@@ -1,3 +1,4 @@
+// Selectors object
 const elements = {
   dollarNow: document.querySelector("#dollarNow"),
   dollarBlueNow: document.querySelector("#dollarBlueNow"),
@@ -13,6 +14,7 @@ const elements = {
   printButton: document.querySelector("#printButton"),
 };
 
+// Prices incialization
 let prices = {
   dollarPrice: 0,
   dollarBluePrice: 0,
@@ -22,12 +24,14 @@ let prices = {
   bnbPrice: 0,
 };
 
+// Generic function to fetch
 async function fetchPrice(url, symbol = null) {
   const response = await fetch(url);
   const data = await response.json();
   return symbol ? parseFloat(data[symbol]) : parseFloat(data.price || data.venta);
 }
 
+// Fetch prices from APIs
 async function fetchAllPrices() {
   prices.dollarPrice = await fetchPrice("https://dolarapi.com/v1/dolares/oficial", "venta");
   prices.dollarBluePrice = await fetchPrice("https://dolarapi.com/v1/dolares/blue", "venta");
@@ -39,11 +43,13 @@ async function fetchAllPrices() {
   updateDollarUI();
 }
 
+// Print function
 function updateDollarUI() {
   elements.dollarNow.textContent = prices.dollarPrice.toFixed(2);
   elements.dollarBlueNow.textContent = prices.dollarBluePrice.toFixed(2);
 }
 
+// Calculate price if fiat, and, if crypto, 0
 function calculateAndUpdateUI(price, typeCurrency) {
   const iva25Value = typeCurrency === "fiat" ? price * 0.25 : 0;
   const iva30Value = typeCurrency === "fiat" ? price * 0.3 : 0;
@@ -57,6 +63,7 @@ function calculateAndUpdateUI(price, typeCurrency) {
   elements.total.textContent = `ARS ${(price + totalIvaValue).toLocaleString("es-AR")}`;
 }
 
+// Form submit handler, prevents reload, and calculates price
 function handleSubmit(event) {
   event.preventDefault();
   const inputValue = parseFloat(elements.inputPrice.value);
@@ -97,6 +104,7 @@ function handleSubmit(event) {
   calculateAndUpdateUI(newPrice, typeCurrency);
 }
 
+// Print function in spans
 function handleInputClear() {
   if (elements.inputPrice.value === "") {
     elements.arsValue.textContent = "";
