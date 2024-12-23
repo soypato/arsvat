@@ -1,147 +1,118 @@
-const dollarNow = document.querySelector("#dollarNow"),
-  dollarBlueNow = document.querySelector("#dollarBlueNow"),
-  formDollar = document.querySelector("#formDollar"),
-  inputPrice = document.querySelector("#inputPrice"),
-  currency = document.querySelector('#currency'),
-  writingInput = document.querySelector("#writingInput"),
-  iva25Span = document.querySelector("#iva25Span"),
-  iva30Span = document.querySelector("#iva30Span"),
-  iva45Span = document.querySelector("#iva45Span"),
-  arsValue = document.querySelector("#arsValue"),
-  totalIva = document.querySelector("#totalIva"),
-  total = document.querySelector("#total"),
-  printButton = document.querySelector('#printButton');
+const elements = {
+  dollarNow: document.querySelector("#dollarNow"),
+  dollarBlueNow: document.querySelector("#dollarBlueNow"),
+  formDollar: document.querySelector("#formDollar"),
+  inputPrice: document.querySelector("#inputPrice"),
+  currency: document.querySelector("#currency"),
+  arsValue: document.querySelector("#arsValue"),
+  iva25Span: document.querySelector("#iva25Span"),
+  iva30Span: document.querySelector("#iva30Span"),
+  iva45Span: document.querySelector("#iva45Span"),
+  totalIva: document.querySelector("#totalIva"),
+  total: document.querySelector("#total"),
+  printButton: document.querySelector("#printButton"),
+};
 
-let dollarPrice, dollarBluePrice, euroPrice, btcPrice, ethPrice, bnbPrice, btcData, ethData, bnbData, newPrice, typeCurrency, iva25Value, iva30Value, iva45Value, totalIvaValue, totalValue;
+let prices = {
+  dollarPrice: 0,
+  dollarBluePrice: 0,
+  euroPrice: 0,
+  btcPrice: 0,
+  ethPrice: 0,
+  bnbPrice: 0,
+};
 
-let variableDollar;
-
-async function dollarFetch() {
-  let responseBlue = await fetch('https://dolarapi.com/v1/dolares/blue');
-  let dataBlue = await responseBlue.json();
-  let dollarBlueData = dataBlue.venta; // Reemplaza por el valor del dólar blue
-
-  let responseOficial = await fetch('https://dolarapi.com/v1/dolares/oficial');
-  let dataOficial = await responseOficial.json();
-  let dollarOficialData = dataOficial.venta; // Reemplaza por el valor del dólar oficial
-
-  dollarNow.innerHTML = `${dollarOficialData}`; // Actualiza el elemento HTML con el valor del dólar oficial
-  dollarBlueNow.innerHTML = `${dollarBlueData}`; // Actualiza el elemento HTML con el valor del dólar blue
-
-  dollarPrice = parseFloat(dollarOficialData); // Valor del dólar oficial
-  dollarBluePrice = parseFloat(dollarBlueData); // Valor del dólar blue
+async function fetchPrice(url, symbol = null) {
+  const response = await fetch(url);
+  const data = await response.json();
+  return symbol ? parseFloat(data[symbol]) : parseFloat(data.price || data.venta);
 }
 
-dollarFetch();
+async function fetchAllPrices() {
+  prices.dollarPrice = await fetchPrice("https://dolarapi.com/v1/dolares/oficial", "venta");
+  prices.dollarBluePrice = await fetchPrice("https://dolarapi.com/v1/dolares/blue", "venta");
+  prices.euroPrice = await fetchPrice("https://api.binance.com/api/v1/ticker/price?symbol=EURUSDT");
+  prices.btcPrice = await fetchPrice("https://api.binance.com/api/v1/ticker/price?symbol=BTCUSDT");
+  prices.ethPrice = await fetchPrice("https://api.binance.com/api/v1/ticker/price?symbol=ETHUSDT");
+  prices.bnbPrice = await fetchPrice("https://api.binance.com/api/v1/ticker/price?symbol=BNBUSDT");
 
-async function eurFetch() {
-  let response = await fetch('https://api.binance.com/api/v1/ticker/price?symbol=EURUSDT');
-  let data = await response.json();
-  euroData = data.price;
-  euroPrice = parseFloat(euroData);
+  updateDollarUI();
 }
-eurFetch();
 
-async function btcFetch() {
-  let response = await fetch('https://api.binance.com/api/v1/ticker/price?symbol=BTCUSDT');
-  let data = await response.json();
-  btcData = data.price;
-  btcPrice = parseFloat(btcData);
+function updateDollarUI() {
+  elements.dollarNow.textContent = prices.dollarPrice.toFixed(2);
+  elements.dollarBlueNow.textContent = prices.dollarBluePrice.toFixed(2);
 }
-btcFetch();
 
-async function ethFetch() {
-  let response = await fetch('https://api.binance.com/api/v1/ticker/price?symbol=ETHUSDT');
-  let data = await response.json();
-  ethData = data.price;
-  ethPrice = parseFloat(ethData);
+function calculateAndUpdateUI(price, typeCurrency) {
+  const iva25Value = typeCurrency === "fiat" ? price * 0.25 : 0;
+  const iva30Value = typeCurrency === "fiat" ? price * 0.3 : 0;
+  const iva45Value = typeCurrency === "fiat" ? price * 0.45 : 0;
+  const totalIvaValue = iva25Value + iva30Value + iva45Value;
+
+  elements.iva25Span.textContent = `ARS ${iva25Value.toLocaleString("es-AR")}`;
+  elements.iva30Span.textContent = `ARS ${iva30Value.toLocaleString("es-AR")}`;
+  elements.iva45Span.textContent = `ARS ${iva45Value.toLocaleString("es-AR")}`;
+  elements.totalIva.textContent = `ARS ${totalIvaValue.toLocaleString("es-AR")}`;
+  elements.total.textContent = `ARS ${(price + totalIvaValue).toLocaleString("es-AR")}`;
 }
-ethFetch();
 
-async function bnbFetch() {
-  let response = await fetch('https://api.binance.com/api/v1/ticker/price?symbol=BNBUSDT');
-  let data = await response.json();
-  bnbData = data.price;
-  bnbPrice = parseFloat(bnbData);
-}
-bnbFetch();
+function handleSubmit(event) {
+  event.preventDefault();
+  const inputValue = parseFloat(elements.inputPrice.value);
+  if (isNaN(inputValue)) return;
 
-setInterval(() => {
-  dollarFetch();
-}, 100000);
+  let newPrice = 0;
+  let typeCurrency = "fiat";
 
-formDollar.addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  if (isNaN(inputPrice.value) || inputPrice.value === '') {
-    // Manejo del caso en el que el valor ingresado no es un número válido.
-    return;
+  switch (elements.currency.value) {
+    case "USD":
+      newPrice = inputValue * prices.dollarPrice;
+      break;
+    case "USD Blue":
+      newPrice = inputValue * prices.dollarBluePrice;
+      typeCurrency = "blue";
+      break;
+    case "EUR":
+      newPrice = inputValue * prices.euroPrice * prices.dollarPrice;
+      break;
+    case "BTC":
+      newPrice = inputValue * prices.btcPrice * prices.dollarBluePrice;
+      typeCurrency = "crypto";
+      break;
+    case "ETH":
+      newPrice = inputValue * prices.ethPrice * prices.dollarBluePrice;
+      typeCurrency = "crypto";
+      break;
+    case "BNB":
+      newPrice = inputValue * prices.bnbPrice * prices.dollarBluePrice;
+      typeCurrency = "crypto";
+      break;
+    case "ARS":
+    default:
+      newPrice = inputValue;
   }
 
-  switch (currency.value) {
-    case 'USD':
-      newPrice = inputPrice.value * dollarPrice;
-      typeCurrency = 'fiat';
-      break;
-    case 'USD Blue':
-      newPrice = inputPrice.value * dollarBluePrice;
-      typeCurrency = 'blue';
-      break;
-    case 'EUR':
-      newPrice = inputPrice.value * euroPrice * dollarPrice;
-      typeCurrency = 'fiat';
-      break;
-    case 'ARS':
-      newPrice = inputPrice.value * 1;
-      typeCurrency = 'fiat';
-      break;
-    case 'BTC':
-      newPrice = inputPrice.value * btcPrice * dollarBluePrice;
-      typeCurrency = 'crypto';
-      break;
-    case 'ETH':
-      newPrice = inputPrice.value * ethPrice * dollarBluePrice;
-      typeCurrency = 'crypto';
-      break;
-    case 'BNB':
-      newPrice = inputPrice.value * bnbPrice * dollarBluePrice;
-      typeCurrency = 'crypto';
+  elements.arsValue.textContent = `ARS ${newPrice.toLocaleString("es-AR")}`;
+  calculateAndUpdateUI(newPrice, typeCurrency);
+}
+
+function handleInputClear() {
+  if (elements.inputPrice.value === "") {
+    elements.arsValue.textContent = "";
+    elements.iva25Span.textContent = "";
+    elements.iva30Span.textContent = "";
+    elements.iva45Span.textContent = "";
+    elements.totalIva.textContent = "";
+    elements.total.textContent = "ARS 0";
   }
+}
 
-  arsValue.innerHTML = `ARS ${newPrice.toLocaleString('es-AR')}`;
+// Initialize
+fetchAllPrices();
+setInterval(fetchAllPrices, 100000);
 
-  iva25Value = Number((newPrice * 0.25))
-  iva30Value = Number((newPrice * 0.3));
-  iva45Value = Number((newPrice * 0.45));
-
-  if (typeCurrency === 'fiat') {
-    iva25Span.innerHTML = `ARS ${iva25Value.toLocaleString('es-AR')}`;
-    iva30Span.innerHTML = `ARS ${iva30Value.toLocaleString('es-AR')}`;
-    iva45Span.innerHTML = `ARS ${iva45Value.toLocaleString('es-AR')}`;
-    totalIvaValue = Number((iva25Value + iva30Value + iva45Value).toFixed(2));
-  } else if (typeCurrency === 'crypto' || typeCurrency === 'blue') {
-    iva25Span.innerHTML = 'ARS 0';
-    iva30Span.innerHTML = 'ARS 0';
-    iva45Span.innerHTML = 'ARS 0';
-    totalIvaValue = 0;
-  }
-  totalIva.innerHTML = `ARS ${totalIvaValue.toLocaleString('es-AR')}`;
-  totalValue = (newPrice + totalIvaValue);
-  total.innerHTML = `ARS ${totalValue.toLocaleString('es-AR')}`;
-
-});
-
-inputPrice.addEventListener('input', () => {
-  if (inputPrice.value === '') {
-    arsValue.innerHTML = '';
-    iva25Span.innerHTML = ''
-    iva30Span.innerHTML = ''
-    iva45Span.innerHTML = ''
-    totalIva.innerHTML = '';
-    total.innerHTML = `ARS 0`;
-  }
-});
-
-printButton.addEventListener('click', () => {
-  print();
-});
+// Event Listeners
+elements.formDollar.addEventListener("submit", handleSubmit);
+elements.inputPrice.addEventListener("input", handleInputClear);
+elements.printButton.addEventListener("click", print);
